@@ -9,9 +9,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Ryba ryba = new Ryba("ryba");
-        Pies pies = new Pies("pies");
-
         List<Pies> hodowlaPsów = new ArrayList<>();
         List<Ziemne> hodowlaZiemnych = new ArrayList<>();
         List<Zwierze> hodowlaZwierzat = new ArrayList<>();
@@ -59,31 +56,15 @@ public class Main {
     private static void stworzHodowleZiemnych(List<Ziemne> list, int ile) {
         for (int i = 0; i < ile; i++) {
             list.add(new Pies("p" + i));
+            list.add(new Kon("k" + i));
         }
     }
 
     private static void stworzHodowleZwierzat(List<Zwierze> list, int ile) {
         for (int i = 0; i < ile; i++) {
             list.add(new Pies("p" + i));
+            list.add(new Kon("k" + i));
             list.add(new Ryba("r" + i));
         }
     }
 }
-
-
-/*
-Programik:
-	- interface:
-		- Zwierze
-		- Wodne
-		- Lądowe
-	- klasy:
-		- Ryba
-		- Pies
-
-Każde zwierze ma swoją nazwę (pole + metoda wyświetlająca)
-Każde zwierze może oddychać (metoda wyświetla jakiś napis)
-Lądowe mogą wydać dźwięk (metoda wyświetla jakiś napis)
-Wodne mogą pływać (metoda wyświetla jakiś napis)
-Dodatkowo dwa razy HodowlaZwierzat(lista), jedna tylko dla jednego gatunku, druga(generyczna) która przyjmuje wszystkie zwierzęta.
- */
