@@ -1,6 +1,6 @@
-package piekarus.igor;
+package tutorial.java;
 
-import piekarus.igor.models.*;
+import tutorial.java.models.*;
 
 import java.util.ArrayList;
 import java.util.List;

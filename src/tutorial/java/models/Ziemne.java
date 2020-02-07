@@ -1,4 +1,4 @@
-package piekarus.igor.models;
+package tutorial.java.models;
 
 public interface Ziemne extends Zwierze {
     public String dajGlos();

@@ -1,16 +1,16 @@
-package piekarus.igor.models;
+package tutorial.java.models;
 
-public class Ryba implements Wodne {
+public class Pies implements Ziemne {
 
     private String nazwa;
 
-    public Ryba(String nazwa) {
+    public Pies(String nazwa) {
         this.nazwa = nazwa;
     }
 
     @Override
-    public String plyn() {
-        return "Płynie";
+    public String dajGlos() {
+        return "Szczeka";
     }
 
     @Override
@@ -20,6 +20,6 @@ public class Ryba implements Wodne {
 
     @Override
     public String oddychaj() {
-        return "Oddycha wodą";
+        return "Oddycha powietrzem";
     }
 }
