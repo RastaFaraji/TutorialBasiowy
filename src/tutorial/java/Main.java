@@ -9,62 +9,86 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List<Pies> hodowlaPsów = new ArrayList<>();
-        List<Ziemne> hodowlaZiemnych = new ArrayList<>();
-        List<Zwierze> hodowlaZwierzat = new ArrayList<>();
-
         int ileZwierzat = 3;
+        List<Pies> hodowlaPsów = stworzHodowlePsow(ileZwierzat);
+        List<Ziemne> hodowlaZiemnych = stworzHodowleZiemnych(ileZwierzat);
+        List<Zwierze> hodowlaZwierzat = stworzHodowleZwierzat(ileZwierzat);
 
-        stworzHodowlePsow(hodowlaPsów, ileZwierzat);
-        stworzHodowleZiemnych(hodowlaZiemnych, ileZwierzat);
-        stworzHodowleZwierzat(hodowlaZwierzat, ileZwierzat);
+        System.out.println("---------------------------");
+        System.out.println("---------------------------");
 
-
-        System.out.println(hodowlaPsów.size());
         for (int i = 0; i < hodowlaPsów.size(); i++) {
-            System.out.println(hodowlaPsów.get(i).getNazwa() + " " + hodowlaPsów.get(i).dajGlos() + " i " + hodowlaPsów.get(i).oddychaj());
+            Pies pies = hodowlaPsów.get(i);
+            System.out.println(getPiesString(pies));
         }
 
         System.out.println("---------------------------");
         System.out.println("---------------------------");
 
-        System.out.println(hodowlaZiemnych.size());
         for (Ziemne ziemne : hodowlaZiemnych) {
-            System.out.println(ziemne.getNazwa() + " "  + ziemne.dajGlos() + " i " + ziemne.oddychaj());
+            System.out.println(getZiemneString(ziemne));
         }
 
         System.out.println("---------------------------");
         System.out.println("---------------------------");
-        System.out.println(hodowlaZwierzat.size());
 
         hodowlaZwierzat.forEach(zwierze -> {
             if (zwierze instanceof Ziemne) {
-                System.out.println(zwierze.getNazwa() + " "  + ((Ziemne)zwierze).dajGlos() + " i " + zwierze.oddychaj());
+                System.out.println(getZiemneString((Ziemne) zwierze));
             } else if (zwierze instanceof Wodne) {
-                System.out.println(zwierze.getNazwa() + " "  + ((Wodne)zwierze).plyn() + " i " + zwierze.oddychaj());
+                System.out.println(getWodneString((Wodne) zwierze));
             }
         });
-
     }
 
-    private static void stworzHodowlePsow(List<Pies> list, int ile) {
-        for (int i = 0; i < ile; i++) {
-            list.add(new Pies("p" + i));
-        }
+    private static String getPiesString(Pies pies) {
+        return pies.getNazwa() + " " + pies.dajGlos() + " i " + pies.oddychaj();
     }
 
-    private static void stworzHodowleZiemnych(List<Ziemne> list, int ile) {
-        for (int i = 0; i < ile; i++) {
-            list.add(new Pies("p" + i));
-            list.add(new Kon("k" + i));
-        }
+    private static String getWodneString(Wodne zwierze) {
+        return zwierze.getNazwa() + " " + zwierze.plyn() + " i " + zwierze.oddychaj();
     }
 
-    private static void stworzHodowleZwierzat(List<Zwierze> list, int ile) {
+    private static String getZiemneString(Ziemne zwierze) {
+        return zwierze.getNazwa() + " " + zwierze.dajGlos() + " i " + zwierze.oddychaj();
+    }
+
+    private static List<Pies> stworzHodowlePsow(int ile) {
+        List<Pies> list = new ArrayList<>();
         for (int i = 0; i < ile; i++) {
-            list.add(new Pies("p" + i));
-            list.add(new Kon("k" + i));
-            list.add(new Ryba("r" + i));
+            list.add(getNewPies(i));
         }
+        return list;
+    }
+
+    private static List<Ziemne>  stworzHodowleZiemnych(int ile) {
+        List<Ziemne> list = new ArrayList<>();
+        for (int i = 0; i < ile; i++) {
+            list.add(getNewKon(i));
+            list.add(getNewPies(i));
+        }
+        return list;
+    }
+
+    private static List<Zwierze>  stworzHodowleZwierzat(int ile) {
+        List<Zwierze> list = new ArrayList<>();
+        for (int i = 0; i < ile; i++) {
+            list.add(getNewKon(i));
+            list.add(getNewPies(i));
+            list.add(getNewRyba(i));
+        }
+        return list;
+    }
+
+    private static Pies getNewPies(int i) {
+        return new Pies("pies_" + i);
+    }
+
+    private static Kon getNewKon(int i) {
+        return new Kon("kon_" + i);
+    }
+
+    private static Ryba getNewRyba(int i) {
+        return new Ryba("ryba_" + i);
     }
 }
