@@ -9,6 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Pies p;//deklaracja
+        p = new Pies(";");//inicjalizacja
+
+
         int ileZwierzat = 3;
         List<Pies> hodowlaPsów = stworzHodowlePsow(ileZwierzat);
         List<Ziemne> hodowlaZiemnych = stworzHodowleZiemnych(ileZwierzat);
@@ -25,7 +29,11 @@ public class Main {
         System.out.println("---------------------------");
         System.out.println("---------------------------");
 
-        for (Ziemne ziemne : hodowlaZiemnych) {
+        for (Ziemne nazwaZmiennej : hodowlaZiemnych) { //dla kazdego el. w tej kolekcji ,
+            System.out.println(getZiemneString(nazwaZmiennej));
+        }
+        for (int i = 0; i < hodowlaZiemnych.size(); i++) { //identyczna z powyższą
+            Ziemne ziemne = hodowlaZiemnych.get(i);
             System.out.println(getZiemneString(ziemne));
         }
 
@@ -39,6 +47,13 @@ public class Main {
                 System.out.println(getWodneString((Wodne) zwierze));
             }
         });
+        for (Zwierze zwierze : hodowlaZwierzat) { //identyczna z powyższą
+            if (zwierze instanceof Ziemne) {
+                System.out.println(getZiemneString((Ziemne) zwierze));
+            } else if (zwierze instanceof Wodne) {
+                System.out.println(getWodneString((Wodne) zwierze));
+            }
+        }
     }
 
     private static String getPiesString(Pies pies) {
